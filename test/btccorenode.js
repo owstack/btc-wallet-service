@@ -5,7 +5,7 @@ var proxyquire = require('proxyquire');
 var btccore = require('btccore-lib');
 var sinon = require('sinon');
 var Service = require('../btccorenode');
-var Constants = require('../common/constants');
+var Constants = require('../lib/common/constants');
 
 describe('Btccore Node Service', function() {
   describe('#constructor', function() {
