@@ -43,12 +43,12 @@ var config = {
     // Providers
     'insight': {
       'livenet/btc': {
-        url: 'https://insight.bitpay.com',
-        apiPrefix: '/api'
+        url: 'http://localhost:3001',
+        apiPrefix: '/insight-api'
       },
       'testnet/btc': {
-        url: 'https://test-insight.bitpay.com',
-        apiPrefix: '/api'
+        url: 'http://localhost:3001',
+        apiPrefix: '/insight-api'
       }
     },
   },
