@@ -75,11 +75,11 @@ An example of this configuration is:
 
     // Providers
     'insight': {
-      'livenet/btc': {
+      'livenet': {
         url: 'https://insight.bitpay.com:443',
         apiPrefix: '/insight-api'
       },
-      'testnet/btc': {
+      'testnet': {
         url: 'https://test-insight.bitpay.com:443',
         apiPrefix: '/insight-api'
       }
