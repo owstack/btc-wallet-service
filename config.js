@@ -42,11 +42,11 @@ var config = {
 
     // Providers
     'insight': {
-      'livenet/btc': {
+      'livenet': {
         url: 'http://localhost:3001',
         apiPrefix: '/insight-api'
       },
-      'testnet/btc': {
+      'testnet': {
         url: 'http://localhost:3001',
         apiPrefix: '/insight-api'
       }
