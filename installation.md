@@ -1,11 +1,11 @@
-The following document is a step-by-step guide to run BWS.
+The following document is a step-by-step guide to run BTCWS.
 
 ### Prerequisites
 Ensure MongoDB (2.6+) is installed and running. This document assumes that mongod is running at the default port 27017.
 See the configuration section to configure a different host/port.
 
-### Install BWS from NPM
-Use the following steps to Install BWS from the npmjs repository and run it with defaults.
+### Install BTCWS from NPM
+Use the following steps to Install BTCWS from the npmjs repository and run it with defaults.
 ```bash
 npm install btccore-wallet-service
 cd btccore-wallet-service
@@ -15,8 +15,8 @@ To change configuration before running, see the Configuration section.
 npm start
 ```
 
-### Install BWS from github source
-Use the following steps to Install BWS from github source and run it with defaults.
+### Install BTCWS from github source
+Use the following steps to Install BTCWS from github source and run it with defaults.
 ```bash
 git clone https://github.com/owstack/btccore-wallet-service.git
 cd btccore-wallet-service
@@ -29,19 +29,19 @@ npm start
 ### Configuration
 Configuration for all required modules can be specified in https://github.com/owstack/btccore-wallet-service/blob/master/config.js
 
-BWS is composed of 5 separate node services -
+BTCWS is composed of 5 separate node services -
 Locker - locker/locker.js
 Message Broker - messagebroker/messagebroker.js
 Blockchain Monitor - bcmonitor/bcmonitor.js (This service talks to the Blockchain Explorer service configured under blockchainExplorerOpts - see Configure blockchain service below.)
 Email Service - emailservice/emailservice.js
-Btccore Wallet Service - bws.js
+Btccore Wallet Service - btcws.js
 
 #### Configure MongoDB
 Example configuration for connecting to the MongoDB instance:
 ```javascript
   storageOpts: {
     mongoDb: {
-      uri: 'mongodb://localhost:27017/bws',
+      uri: 'mongodb://localhost:27017/btcws',
     },
   }
 ```
@@ -67,7 +67,7 @@ Example configuration for connecting to message broker service:
 ```
 
 #### Configure blockchain service
-Note: this service will be used by blockchain monitor service as well as by BWS itself.
+Note: this service will be used by blockchain monitor service as well as by BTCWS itself.
 An example of this configuration is:
 ```javascript
   blockchainExplorerOpts: {

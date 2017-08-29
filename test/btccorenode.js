@@ -27,7 +27,7 @@ describe('Btccore Node Service', function() {
         key: 'key',
         cert: 'cert'
       });
-      service.bwsPort.should.equal(3232);
+      service.btcwsPort.should.equal(3232);
       service.messageBrokerPort.should.equal(3380);
       service.lockerPort.should.equal(3231);
     });
@@ -47,7 +47,7 @@ describe('Btccore Node Service', function() {
         key: 'key',
         cert: 'cert'
       });
-      service.bwsPort.should.equal(3232);
+      service.btcwsPort.should.equal(3232);
       service.messageBrokerPort.should.equal(3380);
       service.lockerPort.should.equal(3231);
     });
@@ -55,12 +55,12 @@ describe('Btccore Node Service', function() {
       var node = {};
       var options = {
         node: node,
-        bwsPort: 1000,
+        btcwsPort: 1000,
         messageBrokerPort: 1001,
         lockerPort: 1002
       };
       var service = new Service(options);
-      service.bwsPort.should.equal(1000);
+      service.btcwsPort.should.equal(1000);
       service.messageBrokerPort.should.equal(1001);
       service.lockerPort.should.equal(1002);
     });
@@ -154,7 +154,7 @@ describe('Btccore Node Service', function() {
       });
       var options = {
         node: {
-          bwsPort: 3232
+          btcwsPort: 3232
         }
       };
       var service = new TestService(options);
@@ -187,7 +187,7 @@ describe('Btccore Node Service', function() {
       });
       var options = {
         node: {
-          bwsPort: 3232
+          btcwsPort: 3232
         }
       };
       var service = new TestService(options);
@@ -224,7 +224,7 @@ describe('Btccore Node Service', function() {
       var options = {
         node: {
           https: true,
-          bwsPort: 3232
+          btcwsPort: 3232
         }
       };
       var service = new TestService(options);

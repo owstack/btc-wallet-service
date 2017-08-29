@@ -44,7 +44,7 @@ describe('Wallet service', function() {
 
   describe('#getServiceVersion', function() {
     it('should get version from package', function() {
-      WalletService.getServiceVersion().should.equal('bws-' + require('../../package').version);
+      WalletService.getServiceVersion().should.equal('btcws-' + require('../../package').version);
     });
   });
 
