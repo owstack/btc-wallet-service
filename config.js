@@ -1,9 +1,9 @@
 var config = {
-  basePath: '/bws/api',
+  basePath: '/btcws/api',
   disableLogs: false,
   port: 3232,
 
-  // Uncomment to make BWS a forking server
+  // Uncomment to make BTCWS a forking server
   // cluster: true,
 
   // Uncomment to set the number or process (will use the nr of availalbe CPUs by default)
@@ -21,7 +21,7 @@ var config = {
 
   storageOpts: {
     mongoDb: {
-      uri: 'mongodb://localhost:27017/bws',
+      uri: 'mongodb://localhost:27017/btcws',
     },
   },
   lockOpts: {

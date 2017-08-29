@@ -24,9 +24,9 @@ var Constants = require('../lib/common/constants');
  * @param {Object} options
  * @param {Node} options.node - A reference to the Btccore Node instance
 -* @param {Boolean} options.https - Enable https for this module, defaults to node settings.
- * @param {Number} options.bwsPort - Port for Btccore Wallet Service API
- * @param {Number} options.messageBrokerPort - Port for BWS message broker
- * @param {Number} options.lockerPort - Port for BWS locker port
+ * @param {Number} options.btcwsPort - Port for Btccore Wallet Service API
+ * @param {Number} options.messageBrokerPort - Port for BTCWS message broker
+ * @param {Number} options.lockerPort - Port for BTCWS locker port
  */
 var Service = function(options) {
   EventEmitter.call(this);
@@ -34,7 +34,7 @@ var Service = function(options) {
   this.node = options.node;
   this.https = options.https || this.node.https;
   this.httpsOptions = options.httpsOptions || this.node.httpsOptions;
-  this.bwsPort = options.bwsPort || baseConfig.port;
+  this.btcwsPort = options.btcwsPort || baseConfig.port;
   this.messageBrokerPort = options.messageBrokerPort || 3380;
   if (baseConfig.lockOpts) {
     this.lockerPort = baseConfig.lockOpts.lockerServer.port;
@@ -117,7 +117,7 @@ Service.prototype._startWalletService = function(config, next) {
     if (err) {
       return next(err);
     }
-    self.server.listen(self.bwsPort, next);
+    self.server.listen(self.btcwsPort, next);
   });
 };
 

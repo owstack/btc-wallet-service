@@ -9,15 +9,15 @@ A Multisig HD Btccore Wallet Service.
 
 ## Attribution
 
-This repository was created by copy forking [bitcore-wallet-service commit b6d9048] (https://github.com/bitpay/bitcore-wallet-service/commit/b6d904800196f48329f6f10d4cc191b6964ba105).
+This repository was created by copy forking [bitcore-wallet-service commit b6d9048](https://github.com/bitpay/bitcore-wallet-service/commit/b6d904800196f48329f6f10d4cc191b6964ba105).
 
 # Description
 
 Btccore Wallet Service facilitates multisig HD wallets creation and operation through a (hopefully) simple and intuitive REST API.
 
-BWS can usually be installed within minutes and accommodates all the needed infrastructure for peers in a multisig wallet to communicate and operate – with minimum server trust.
+BTCWS can usually be installed within minutes and accommodates all the needed infrastructure for peers in a multisig wallet to communicate and operate – with minimum server trust.
   
-See [Btccore-wallet-client](https://github.com/owstack/btccore-wallet-client) for the *official* client library that communicates to BWS and verifies its response. Also check [Btccore-wallet](https://github.com/owstack/btccore-wallet) for a simple CLI wallet implementation that relays on BWS.
+See [Btccore-wallet-client](https://github.com/owstack/btccore-wallet-client) for the *official* client library that communicates to BTCWS and verifies its response. Also check [Btccore-wallet](https://github.com/owstack/btccore-wallet) for a simple CLI wallet implementation that relays on BTCWS.
 
 # Getting Started
 ```
@@ -25,22 +25,22 @@ See [Btccore-wallet-client](https://github.com/owstack/btccore-wallet-client) fo
  cd btccore-wallet-service && npm start
 ```
 
-This will launch the BWS service (with default settings) at `http://localhost:3232/bws/api`.
+This will launch the BTCWS service (with default settings) at `http://localhost:3232/btcws/api`.
 
-BWS needs mongoDB. You can configure the connection at `config.js`
+BTCWS needs mongoDB. You can configure the connection at `config.js`
 
-BWS supports SSL and Clustering. For a detailed guide on installing BWS with extra features see [Installing BWS](https://github.com/owstack/btccore-wallet-service/blob/master/installation.md). 
+BTCWS supports SSL and Clustering. For a detailed guide on installing BTCWS with extra features see [Installing BTCWS](https://github.com/owstack/btccore-wallet-service/blob/master/installation.md). 
 
-BWS uses by default a Request Rate Limitation to CreateWallet endpoint. If you need to modify it, check defaults.js' `Defaults.RateLimit`
+BTCWS uses by default a Request Rate Limitation to CreateWallet endpoint. If you need to modify it, check defaults.js' `Defaults.RateLimit`
 
 # Security Considerations
- * Private keys are never sent to BWS. Copayers store them locally.
- * Extended public keys are stored on BWS. This allows BWS to easily check wallet balance, send offline notifications to copayers, etc.
+ * Private keys are never sent to BTCWS. Copayers store them locally.
+ * Extended public keys are stored on BTCWS. This allows BTCWS to easily check wallet balance, send offline notifications to copayers, etc.
  * During wallet creation, the initial copayer creates a wallet secret that contains a private key. All copayers need to prove they have the secret by signing their information with this private key when joining the wallet. The secret should be shared using secured channels.
  * A copayer could join the wallet more than once, and there is no mechanism to prevent this. See [wallet](https://github.com/owstack/btccore-wallet)'s confirm command, for a method for confirming copayers.
- * All BWS responses are verified:
+ * All BTCWS responses are verified:
   * Addresses and change addresses are derived independently and locally by the copayers from their local data.
-  * TX Proposals templates are signed by copayers and verified by others, so the BWS cannot create or tamper with them.
+  * TX Proposals templates are signed by copayers and verified by others, so the BTCWS cannot create or tamper with them.
 
 # REST API
 ## Authentication
@@ -121,7 +121,7 @@ Returns:
  * name: Name of the wallet 
  * m: Number of required peers to sign transactions 
  * n: Number of total peers on the wallet
- * pubKey: Wallet Creation Public key to check joining copayer's signatures (the private key is unknown by BWS and must be communicated
+ * pubKey: Wallet Creation Public key to check joining copayer's signatures (the private key is unknown by BTCWS and must be communicated
   by the creator peer to other peers).
 
 Returns: 

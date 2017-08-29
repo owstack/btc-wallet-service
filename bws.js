@@ -12,7 +12,7 @@ log.disableColor();
 
 
 
-var port = process.env.BWS_PORT || config.port || 3232;
+var port = process.env.BTCWS_PORT || config.port || 3232;
 
 var cluster = require('cluster');
 var http = require('http');
@@ -56,14 +56,14 @@ function startInstance(cb) {
 
   expressApp.start(config, function(err) {
     if (err) {
-      log.error('Could not start BWS instance', err);
+      log.error('Could not start BTCWS instance', err);
       return;
     }
 
     server.listen(port);
 
     var instanceInfo = cluster.worker ? ' [Instance:' + cluster.worker.id + ']' : '';
-    log.info('BWS running ' + instanceInfo);
+    log.info('BTCWS running ' + instanceInfo);
     return;
   });
 };

@@ -1,7 +1,7 @@
-var BWS = {};
+var BTCWS = {};
 
-BWS.ExpressApp = require('./lib/expressapp');
-BWS.Storage = require('./lib/storage');
+BTCWS.ExpressApp = require('./lib/expressapp');
+BTCWS.Storage = require('./lib/storage');
 
 
-module.exports = BWS;
+module.exports = BTCWS;

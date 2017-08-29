@@ -36,7 +36,7 @@ helpers.before = function(cb) {
   function getDb(cb) {
     if (useMongoDb) {
       var mongodb = require('mongodb');
-      mongodb.MongoClient.connect('mongodb://localhost:27017/bws_test', function(err, db) {
+      mongodb.MongoClient.connect('mongodb://localhost:27017/btcws_test', function(err, db) {
         if (err) throw err;
         return cb(db);
       });

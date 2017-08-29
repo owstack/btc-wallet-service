@@ -10,7 +10,7 @@
     "multisig",
     "wallet",
     "btccore",
-    "BWS"
+    "BTCWS"
   ],
   "repository": {
     "url": "git@github.com:owstack/btccore-wallet-service.git",
