@@ -2,7 +2,7 @@
   "name": "btccore-wallet-service",
   "description": "A service for Mutisig HD Bitcoin Wallets",
   "author": "Open Wallet Stack",
-  "version": "1.18.0",
+  "version": "0.0.1",
   "licence": "MIT",
   "keywords": [
     "bitcoin",
