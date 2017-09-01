@@ -75,8 +75,8 @@ var config = {
   //  defaultLanguage: 'en',
   //  defaultUnit: 'btc',
   //  publicTxUrlTemplate: {
-  //    'livenet/btc': 'https://insight.bitpay.com/tx/{{txid}}',
-  //    'testnet/btc': 'https://test-insight.bitpay.com/tx/{{txid}}',
+  //    'livenet': 'https://insight.bitpay.com/tx/{{txid}}',
+  //    'testnet': 'https://test-insight.bitpay.com/tx/{{txid}}',
   //  },
   //},
   //

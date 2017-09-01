@@ -1,11 +1,11 @@
-
-# btccore-wallet-service
+Btccore Wallet Service
+======
 
 [![NPM Package](https://img.shields.io/npm/v/btccore-wallet-service.svg?style=flat-square)](https://www.npmjs.org/package/btccore-wallet-service)
 [![Build Status](https://img.shields.io/travis/owstack/btccore-wallet-service.svg?branch=master&style=flat-square)](https://travis-ci.org/bitpay/btccore-wallet-service)
 [![Coverage Status](https://coveralls.io/repos/owstack/btccore-wallet-service/badge.svg?branch=master)](https://coveralls.io/r/owstack/btccore-wallet-service?branch=master)
 
-A Multisig HD Btccore Wallet Service.
+A multisignature HD Bitcoin wallet service.
 
 ## Attribution
 
