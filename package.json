@@ -1,7 +1,6 @@
 {
   "name": "btccore-wallet-service",
-  "description": "A service for Mutisig HD Bitcoin Wallets",
-  "author": "Open Wallet Stack",
+  "description": "A service for mutisignatire HD Bitcoin wallets",
   "version": "0.0.1",
   "licence": "MIT",
   "keywords": [
@@ -69,15 +68,5 @@
     "test": "./node_modules/.bin/mocha",
     "coveralls": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
-  "btccoreNode": "./btccorenode",
-  "contributors": [{
-    "name": "Braydon Fuller",
-    "email": "braydon@bitpay.com"
-  }, {
-    "name": "Ivan Socolsky",
-    "email": "ivan@bitpay.com"
-  }, {
-    "name": "Matias Alejo Garcia",
-    "email": "ematiu@gmail.com"
-  }]
+  "btccoreNode": "./btccorenode"
 }
