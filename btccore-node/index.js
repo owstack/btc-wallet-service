@@ -44,7 +44,7 @@ var Service = function(options) {
 
 util.inherits(Service, EventEmitter);
 
-Service.dependencies = ['insight-api'];
+Service.dependencies = ['btccore-explorer-api'];
 
 /**
  * This method will read `key` and `cert` files from disk based on `httpsOptions` and
@@ -73,7 +73,7 @@ Service.prototype._readHttpsOptions = function() {
 
 /**
  * Will get the configuration with settings for the locally
- * running Insight API.
+ * running Explorer API.
  * @returns {Object}
  */
 Service.prototype._getConfiguration = function() {
@@ -81,12 +81,12 @@ Service.prototype._getConfiguration = function() {
 
   var providerOptions = {
     url: (self.node.https ? 'https://' : 'http://') + 'localhost:' + self.node.port,
-    apiPrefix: '/insight-api'
+    apiPrefix: '/explorer-api'
   };
 
   // A btccore-node is either livenet or testnet, so we'll pass
   // the configuration options to communicate via the local running
-  // instance of the insight-api service.
+  // instance of the explorer-api service.
   if (self.node.network === Networks.livenet) {
     baseConfig.blockchainExplorerOpts[Constants.LIVENET] = providerOptions;
   } else if (self.node.network === Networks.testnet) {

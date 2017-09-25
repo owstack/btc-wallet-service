@@ -4336,6 +4336,26 @@ describe('Wallet service', function() {
         });
       });
     });
+    it('should not duplicate address on storage after TX creation', function(done) {
+      helpers.stubUtxos(server, wallet, 2, function() {
+        var toAddress = '18PzpUFkFZE8zKWUPvfykkTxmB9oMR8qP7';
+        var opts = {
+          outputs: [{
+            amount: 1e8,
+            toAddress: toAddress,
+          }],
+          feePerKb: 100e2,
+        };
+        server.createTx(opts, function(err, txp) {
+          should.not.exist(err);
+          server.storage.fetchAddresses(wallet.id, function(err, addresses) {
+            should.not.exist(err);
+            addresses.length.should.equal(1);
+            done();
+          });
+        });
+      });
+    });
     it('should not be able to specify custom changeAddress', function(done) {
       helpers.stubUtxos(server, wallet, 2, function() {
         var toAddress = '18PzpUFkFZE8zKWUPvfykkTxmB9oMR8qP7';
@@ -6056,7 +6076,7 @@ describe('Wallet service', function() {
       });
     });
 
-    it('should get tx history from insight', function(done) {
+    it('should get tx history from explorer', function(done) {
       helpers.stubHistory(TestData.history);
       server.getTxHistory({}, function(err, txs) {
         should.not.exist(err);
@@ -6477,7 +6497,7 @@ describe('Wallet service', function() {
       Defaults.HISTORY_CACHE_ADDRESS_THRESOLD = _threshold;
     });
 
-    it('should store partial cache tx history from insight', function(done) {
+    it('should store partial cache tx history from explorer', function(done) {
       var skip = 31;
       var limit = 10;
       var totalItems = 200;
@@ -6534,7 +6554,7 @@ describe('Wallet service', function() {
     });
 
 
-    it('should store cache all tx history from insight', function(done) {
+    it('should store cache all tx history from explorer', function(done) {
       var skip = 195;
       var limit = 5;
       var totalItems = 200;

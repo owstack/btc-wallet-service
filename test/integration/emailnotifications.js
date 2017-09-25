@@ -51,8 +51,8 @@ describe('Email notifications', function() {
             emailService = new EmailService();
 
             var publicTxUrlTemplate = {};
-            publicTxUrlTemplate[Constants.LIVENET] = 'https://insight.bitpay.com/tx/{{txid}}';
-            publicTxUrlTemplate[Constants.TESTNET] = 'https://test-insight.bitpay.com/tx/{{txid}}';
+            publicTxUrlTemplate[Constants.LIVENET] = 'https://explorer.openwalletstack.com/tx/{{txid}}';
+            publicTxUrlTemplate[Constants.TESTNET] = 'https://test-explorer.openwalletstack.com/tx/{{txid}}';
 
             emailService.start({
               lockOpts: {},
@@ -204,7 +204,7 @@ describe('Email notifications', function() {
             one.subject.should.contain('Payment sent');
             one.text.should.contain('800,000');
             should.exist(one.html);
-            one.html.should.contain('https://insight.bitpay.com/tx/' + txp.txid);
+            one.html.should.contain('https://explorer.openwalletstack.com/tx/' + txp.txid);
             server.storage.fetchUnsentEmails(function(err, unsent) {
               should.not.exist(err);
               unsent.should.be.empty;
@@ -468,8 +468,8 @@ describe('Email notifications', function() {
             emailService = new EmailService();
 
             var publicTxUrlTemplate = {};
-            publicTxUrlTemplate[Constants.LIVENET] = 'https://insight.bitpay.com/tx/{{txid}}';
-            publicTxUrlTemplate[Constants.TESTNET] = 'https://test-insight.bitpay.com/tx/{{txid}}';
+            publicTxUrlTemplate[Constants.LIVENET] = 'https://explorer.openwalletstack.com/tx/{{txid}}';
+            publicTxUrlTemplate[Constants.TESTNET] = 'https://test-explorer.openwalletstack.com/tx/{{txid}}';
 
             emailService.start({
               lockOpts: {},
