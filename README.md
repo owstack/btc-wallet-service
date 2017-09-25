@@ -2,7 +2,7 @@ Btccore Wallet Service
 ======
 
 [![NPM Package](https://img.shields.io/npm/v/btccore-wallet-service.svg?style=flat-square)](https://www.npmjs.org/package/btccore-wallet-service)
-[![Build Status](https://img.shields.io/travis/owstack/btccore-wallet-service.svg?branch=master&style=flat-square)](https://travis-ci.org/bitpay/btccore-wallet-service)
+[![Build Status](https://img.shields.io/travis/owstack/btccore-wallet-service.svg?branch=master&style=flat-square)](https://travis-ci.org/owstack/btccore-wallet-service)
 [![Coverage Status](https://coveralls.io/repos/owstack/btccore-wallet-service/badge.svg?branch=master)](https://coveralls.io/r/owstack/btccore-wallet-service?branch=master)
 
 A multisignature HD Bitcoin wallet service.
@@ -88,7 +88,7 @@ Returns:
 `/v1/addresses/`: Get Wallet's main addresses (does not include change addresses)
 
 Returns:
- * List of Addresses object: (https://github.com/owstack/btccore-wallet-service/blob/master/lib/model/address.js)).  This call is mainly provided so the client check this addresses for incoming transactions (using a service like [Insight](https://insight.is)
+ * List of Addresses object: (https://github.com/owstack/btccore-wallet-service/blob/master/lib/model/address.js)).  This call is mainly provided so the client check this addresses for incoming transactions (using a service like [Explorer](https://github.com/owstack/ows-explorer)
 
 `/v1/balance/`:  Get Wallet's balance
 

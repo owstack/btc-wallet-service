@@ -11,7 +11,7 @@ describe('Blockchain explorer', function() {
   describe('#constructor', function() {
     it('should return a blockchain explorer with basic methods', function() {
       var exp = new BlockchainExplorer({
-        provider: 'insight',
+        provider: 'explorer',
         network: Constants.TESTNET,
       });
       should.exist(exp);
@@ -22,7 +22,7 @@ describe('Blockchain explorer', function() {
       exp.should.respondTo('estimateFee');
       exp.should.respondTo('initSocket');
       var exp = new BlockchainExplorer({
-        provider: 'insight',
+        provider: 'explorer',
         network: Constants.LIVENET,
       });
       should.exist(exp);

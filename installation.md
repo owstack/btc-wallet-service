@@ -71,17 +71,17 @@ Note: this service will be used by blockchain monitor service as well as by BTCW
 An example of this configuration is:
 ```javascript
   blockchainExplorerOpts: {
-    defaultProvider: 'insight',
+    defaultProvider: 'explorer',
 
     // Providers
-    'insight': {
+    'explorer': {
       'livenet': {
-        url: 'https://insight.bitpay.com:443',
-        apiPrefix: '/insight-api'
+        url: 'https://explorer.openwalletstack.com:443',
+        apiPrefix: '/explorer-api'
       },
       'testnet': {
-        url: 'https://test-insight.bitpay.com:443',
-        apiPrefix: '/insight-api'
+        url: 'https://test-explorer.openwalletstack.com:443',
+        apiPrefix: '/explorer-api'
       }
     }
   }

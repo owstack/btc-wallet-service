@@ -38,18 +38,20 @@ var config = {
     },
   },
   blockchainExplorerOpts: {
-    defaultProvider: 'insight',
+    defaultProvider: 'explorer',
 
     // Providers
-    'insight': {
-      'livenet': {
+    explorer: {
+      livenet: {
         url: 'http://localhost:3001',
-        apiPrefix: '/insight-api'
+        apiPrefix: '/explorer-api'
       },
-      'testnet': {
+      testnet: {
         url: 'http://localhost:3001',
-        apiPrefix: '/insight-api'
-      }
+        apiPrefix: '/explorer-api'
+        // Multiple servers (in priority order)
+        // url: ['http://a.b.c', 'https://test-explorer.openwalletstack.com:443'],
+      },
     },
   },
   pushNotificationsOpts: {
@@ -75,8 +77,8 @@ var config = {
   //  defaultLanguage: 'en',
   //  defaultUnit: 'btc',
   //  publicTxUrlTemplate: {
-  //    'livenet': 'https://insight.bitpay.com/tx/{{txid}}',
-  //    'testnet': 'https://test-insight.bitpay.com/tx/{{txid}}',
+  //    'livenet': 'https://explorer.openwalletstack.com/tx/{{txid}}',
+  //    'testnet': 'https://test-explorer.openwalletstack.com/tx/{{txid}}',
   //  },
   //},
   //
