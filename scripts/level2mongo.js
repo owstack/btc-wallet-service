@@ -2,7 +2,7 @@
 
 var LevelStorage = require('../lib/storage_leveldb');
 var MongoStorage = require('../lib/storage');
-var Btc = require('btc-lib');
+var btcLib = require('btc-lib');
 
 var level = new LevelStorage({
   dbPath: './db',
@@ -59,13 +59,13 @@ function migrate(key, value, cb) {
     mongo.db.collection('copayers_lookup').insert(value, cb);
   } else if (key.match(/!addr!/)) {
     value.walletId = key.substring(2, key.indexOf('!addr'));
-    value.network = Btc.Address(value.address).toObject().network;
+    value.network = btcLib.Address(value.address).toObject().network;
     mongo.db.collection('addresses').insert(value, cb);
   } else if (key.match(/!not!/)) {
     mongo.db.collection('notifications').insert(value, cb);
   } else if (key.match(/!p?txp!/)) {
     value.isPending = key.indexOf('!ptxp!') != -1;
-    value.network = Btc.Address(value.toAddress).toObject().network;
+    value.network = btcLib.Address(value.toAddress).toObject().network;
     mongo.db.collection('txs').insert(value, cb);
   } else if (key.match(/!main$/)) {
     mongo.db.collection('wallets').insert(value, cb);

@@ -5,7 +5,7 @@ var chai = require('chai');
 var sinon = require('sinon');
 var should = chai.should();
 var TxProposal = require('../../lib/model/txproposal');
-var Btc = require('btc-lib');
+var btcLib = require('btc-lib');
 var Constants = require('../../lib/common/constants');
 
 describe('TxProposal', function() {

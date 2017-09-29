@@ -10,7 +10,7 @@ var log = require('npmlog');
 log.debug = log.verbose;
 log.level = 'info';
 
-var Btc = require('btc-lib');
+var btcLib = require('btc-lib');
 
 var Common = require('../../lib/common');
 var Utils = Common.Utils;
@@ -1631,7 +1631,7 @@ describe('Wallet service', function() {
     };
 
     beforeEach(function() {
-      reqPrivKey = new Btc.PrivateKey();
+      reqPrivKey = new btcLib.PrivateKey();
       var requestPubKey = reqPrivKey.toPublicKey();
 
       var xPrivKey = TestData.copayers[0].xPrivKey_44H_0H_0H;
@@ -1692,7 +1692,7 @@ describe('Wallet service', function() {
           should.not.exist(err);
           server.getBalance(res.wallet.walletId, function(err, bal) {
             should.not.exist(err);
-            var privKey = new Btc.PrivateKey();
+            var privKey = new btcLib.PrivateKey();
             (getAuthServer(opts.copayerId, privKey, function(err, server2) {
               err.code.should.equal('NOT_AUTHORIZED');
               done();
@@ -3110,7 +3110,7 @@ describe('Wallet service', function() {
       });
       it('should fail gracefully when btc throws exception on raw tx creation', function(done) {
         helpers.stubUtxos(server, wallet, 1, function() {
-          var btcStub = sinon.stub(Btc, 'Transaction');
+          var btcStub = sinon.stub(btcLib, 'Transaction');
           btcStub.throws({
             name: 'dummy',
             message: 'dummy exception'
@@ -3274,7 +3274,7 @@ describe('Wallet service', function() {
         });
       });
       it('should accept a tx proposal signed with a custom key', function(done) {
-        var reqPrivKey = new Btc.PrivateKey();
+        var reqPrivKey = new btcLib.PrivateKey();
         var reqPubKey = reqPrivKey.toPublicKey().toString();
 
         var xPrivKey = TestData.copayers[0].xPrivKey_44H_0H_0H;
