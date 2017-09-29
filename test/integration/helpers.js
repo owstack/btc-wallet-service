@@ -12,7 +12,7 @@ var tingodb = require('tingodb')({
   memStore: true
 });
 
-var Btccore = require('btccore-lib');
+var Btc = require('btc-lib');
 
 var Common = require('../../lib/common');
 var Utils = Common.Utils;
@@ -82,13 +82,13 @@ helpers.getStorage = function() {
 };
 
 helpers.signMessage = function(text, privKey) {
-  var priv = new Btccore.PrivateKey(privKey);
+  var priv = new Btc.PrivateKey(privKey);
   var hash = Utils.hashMessage(text);
-  return Btccore.crypto.ECDSA.sign(hash, priv, 'little').toString();
+  return Btc.crypto.ECDSA.sign(hash, priv, 'little').toString();
 };
 
 helpers.signRequestPubKey = function(requestPubKey, xPrivKey) {
-  var priv = new Btccore.HDPrivateKey(xPrivKey).deriveChild(Constants.PATHS.REQUEST_KEY_AUTH).privateKey;
+  var priv = new Btc.HDPrivateKey(xPrivKey).deriveChild(Constants.PATHS.REQUEST_KEY_AUTH).privateKey;
   return helpers.signMessage(requestPubKey, priv);
 };
 
@@ -110,19 +110,19 @@ helpers.getAuthServer = function(copayerId, cb) {
 helpers._generateCopayersTestData = function(n) {
   console.log('var copayers = [');
   _.each(_.range(n), function(c) {
-    var xpriv = new Btccore.HDPrivateKey();
-    var xpub = Btccore.HDPublicKey(xpriv);
+    var xpriv = new Btc.HDPrivateKey();
+    var xpub = Btc.HDPublicKey(xpriv);
 
     var xpriv_45H = xpriv.deriveChild(45, true);
-    var xpub_45H = Btccore.HDPublicKey(xpriv_45H);
+    var xpub_45H = Btc.HDPublicKey(xpriv_45H);
     var id45 = Copayer._xPubToCopayerId(xpub_45H.toString());
 
     var xpriv_44H_0H_0H = xpriv.deriveChild(44, true).deriveChild(0, true).deriveChild(0, true);
-    var xpub_44H_0H_0H = Btccore.HDPublicKey(xpriv_44H_0H_0H);
+    var xpub_44H_0H_0H = Btc.HDPublicKey(xpriv_44H_0H_0H);
     var id44 = Copayer._xPubToCopayerId(xpub_44H_0H_0H.toString());
 
     var xpriv_1H = xpriv.deriveChild(1, true);
-    var xpub_1H = Btccore.HDPublicKey(xpriv_1H);
+    var xpub_1H = Btc.HDPublicKey(xpriv_1H);
     var priv = xpriv_1H.deriveChild(0).privateKey;
     var pub = xpub_1H.deriveChild(0).publicKey;
 
@@ -202,7 +202,7 @@ helpers.createAndJoinWallet = function(m, n, opts, cb) {
 
 
 helpers.randomTXID = function() {
-  return Btccore.crypto.Hash.sha256(new Buffer(Math.random() * 100000)).toString('hex');;
+  return Btc.crypto.Hash.sha256(new Buffer(Math.random() * 100000)).toString('hex');;
 };
 
 helpers.toSatoshi = function(btc) {
@@ -277,10 +277,10 @@ helpers.stubUtxos = function(server, wallet, amounts, opts, cb) {
         var scriptPubKey;
         switch (wallet.addressType) {
           case Constants.SCRIPT_TYPES.P2SH:
-            scriptPubKey = Btccore.Script.buildMultisigOut(address.publicKeys, wallet.m).toScriptHashOut();
+            scriptPubKey = Btc.Script.buildMultisigOut(address.publicKeys, wallet.m).toScriptHashOut();
             break;
           case Constants.SCRIPT_TYPES.P2PKH:
-            scriptPubKey = Btccore.Script.buildPublicKeyHashOut(address.address);
+            scriptPubKey = Btc.Script.buildPublicKeyHashOut(address.address);
             break;
         }
         should.exist(scriptPubKey);
@@ -370,7 +370,7 @@ helpers.clientSign = function(txp, derivedXPrivKey) {
   var privs = [];
   var derived = {};
 
-  var xpriv = new Btccore.HDPrivateKey(derivedXPrivKey, txp.network);
+  var xpriv = new Btc.HDPrivateKey(derivedXPrivKey, txp.network);
 
   _.each(txp.inputs, function(i) {
     if (!derived[i.path]) {
@@ -379,7 +379,7 @@ helpers.clientSign = function(txp, derivedXPrivKey) {
     }
   });
 
-  var t = txp.getBtccoreTx();
+  var t = txp.getBtcTx();
 
   var signatures = _.map(privs, function(priv, i) {
     return t.getSignatures(priv);

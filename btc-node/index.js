@@ -7,8 +7,8 @@ var https = require('https');
 var http = require('http');
 var async = require('async');
 var path = require('path');
-var btccore = require('btccore-lib');
-var Networks = btccore.Networks;
+var btc = require('btc-lib');
+var Networks = btc.Networks;
 var Locker = require('locker-server');
 var BlockchainMonitor = require('../lib/blockchainmonitor');
 var EmailService = require('../lib/emailservice');
@@ -20,11 +20,11 @@ var baseConfig = require('../config');
 var Constants = require('../lib/common/constants');
 
 /**
- * A Btccore Node Service module
+ * A Btc Node Service module
  * @param {Object} options
- * @param {Node} options.node - A reference to the Btccore Node instance
+ * @param {Node} options.node - A reference to the Btc Node instance
 -* @param {Boolean} options.https - Enable https for this module, defaults to node settings.
- * @param {Number} options.btcwsPort - Port for Btccore Wallet Service API
+ * @param {Number} options.btcwsPort - Port for Btc Wallet Service API
  * @param {Number} options.messageBrokerPort - Port for BTCWS message broker
  * @param {Number} options.lockerPort - Port for BTCWS locker port
  */
@@ -44,7 +44,7 @@ var Service = function(options) {
 
 util.inherits(Service, EventEmitter);
 
-Service.dependencies = ['btccore-explorer-api'];
+Service.dependencies = ['btc-explorer-api'];
 
 /**
  * This method will read `key` and `cert` files from disk based on `httpsOptions` and
@@ -84,7 +84,7 @@ Service.prototype._getConfiguration = function() {
     apiPrefix: '/explorer-api'
   };
 
-  // A btccore-node is either livenet or testnet, so we'll pass
+  // A btc-node is either livenet or testnet, so we'll pass
   // the configuration options to communicate via the local running
   // instance of the explorer-api service.
   if (self.node.network === Networks.livenet) {

@@ -5,7 +5,7 @@ var chai = require('chai');
 var sinon = require('sinon');
 var should = chai.should();
 var TxProposal = require('../../lib/model/txproposal');
-var Btccore = require('btccore-lib');
+var Btc = require('btc-lib');
 var Constants = require('../../lib/common/constants');
 
 describe('TxProposal', function() {
@@ -27,21 +27,21 @@ describe('TxProposal', function() {
     });
   });
 
-  describe('#getBtccoreTx', function() {
-    it('should create a valid btccore TX', function() {
+  describe('#getBtcTx', function() {
+    it('should create a valid btc TX', function() {
       var txp = TxProposal.fromObj(aTXP());
-      var t = txp.getBtccoreTx();
+      var t = txp.getBtcTx();
       should.exist(t);
     });
     it('should order outputs as specified by outputOrder', function() {
       var txp = TxProposal.fromObj(aTXP());
 
       txp.outputOrder = [0, 1, 2];
-      var t = txp.getBtccoreTx();
+      var t = txp.getBtcTx();
       t.getChangeOutput().should.deep.equal(t.outputs[2]);
 
       txp.outputOrder = [2, 0, 1];
-      var t = txp.getBtccoreTx();
+      var t = txp.getBtcTx();
       t.getChangeOutput().should.deep.equal(t.outputs[0]);
     });
   });

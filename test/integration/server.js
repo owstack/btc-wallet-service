@@ -10,7 +10,7 @@ var log = require('npmlog');
 log.debug = log.verbose;
 log.level = 'info';
 
-var Btccore = require('btccore-lib');
+var Btc = require('btc-lib');
 
 var Common = require('../../lib/common');
 var Utils = Common.Utils;
@@ -1631,7 +1631,7 @@ describe('Wallet service', function() {
     };
 
     beforeEach(function() {
-      reqPrivKey = new Btccore.PrivateKey();
+      reqPrivKey = new Btc.PrivateKey();
       var requestPubKey = reqPrivKey.toPublicKey();
 
       var xPrivKey = TestData.copayers[0].xPrivKey_44H_0H_0H;
@@ -1692,7 +1692,7 @@ describe('Wallet service', function() {
           should.not.exist(err);
           server.getBalance(res.wallet.walletId, function(err, bal) {
             should.not.exist(err);
-            var privKey = new Btccore.PrivateKey();
+            var privKey = new Btc.PrivateKey();
             (getAuthServer(opts.copayerId, privKey, function(err, server2) {
               err.code.should.equal('NOT_AUTHORIZED');
               done();
@@ -2580,7 +2580,7 @@ describe('Wallet service', function() {
             server.createTx(txOpts, function(err, tx) {
               should.not.exist(err);
               should.exist(tx);
-              var t = tx.getBtccoreTx();
+              var t = tx.getBtcTx();
               t.getChangeOutput().script.toAddress().toString().should.equal(txOpts.changeAddress);
               done();
             });
@@ -2602,7 +2602,7 @@ describe('Wallet service', function() {
               tx.amount.should.equal(helpers.toSatoshi(0.8));
               should.not.exist(tx.feePerKb);
               tx.fee.should.equal(1000e2);
-              var t = tx.getBtccoreTx();
+              var t = tx.getBtcTx();
               t.getFee().should.equal(1000e2);
               t.getChangeOutput().satoshis.should.equal(3e8 - 0.8e8 - 1000e2);
               done();
@@ -3083,7 +3083,7 @@ describe('Wallet service', function() {
           server.createTx(txOpts, function(err, txp) {
             should.not.exist(err);
             should.exist(txp);
-            var t = txp.getBtccoreTx().toObject();
+            var t = txp.getBtcTx().toObject();
             t.outputs.length.should.equal(1);
             t.outputs[0].satoshis.should.equal(max);
             done();
@@ -3108,10 +3108,10 @@ describe('Wallet service', function() {
           });
         });
       });
-      it('should fail gracefully when btccore throws exception on raw tx creation', function(done) {
+      it('should fail gracefully when btc throws exception on raw tx creation', function(done) {
         helpers.stubUtxos(server, wallet, 1, function() {
-          var btccoreStub = sinon.stub(Btccore, 'Transaction');
-          btccoreStub.throws({
+          var btcStub = sinon.stub(Btc, 'Transaction');
+          btcStub.throws({
             name: 'dummy',
             message: 'dummy exception'
           });
@@ -3125,7 +3125,7 @@ describe('Wallet service', function() {
           server.createTx(txOpts, function(err, tx) {
             should.exist(err);
             err.message.should.equal('dummy exception');
-            btccoreStub.restore();
+            btcStub.restore();
             done();
           });
         });
@@ -3206,9 +3206,9 @@ describe('Wallet service', function() {
           server.createTx(txOpts, function(err, tx) {
             should.not.exist(err);
             should.exist(tx);
-            var btccoreTx = tx.getBtccoreTx();
-            btccoreTx.outputs.length.should.equal(1);
-            btccoreTx.outputs[0].satoshis.should.equal(tx.amount);
+            var btcTx = tx.getBtcTx();
+            btcTx.outputs.length.should.equal(1);
+            btcTx.outputs[0].satoshis.should.equal(tx.amount);
             done();
           });
         });
@@ -3274,7 +3274,7 @@ describe('Wallet service', function() {
         });
       });
       it('should accept a tx proposal signed with a custom key', function(done) {
-        var reqPrivKey = new Btccore.PrivateKey();
+        var reqPrivKey = new Btc.PrivateKey();
         var reqPubKey = reqPrivKey.toPublicKey().toString();
 
         var xPrivKey = TestData.copayers[0].xPrivKey_44H_0H_0H;
@@ -3338,7 +3338,7 @@ describe('Wallet service', function() {
             should.not.exist(tx.changeAddress);
             tx.amount.should.equal(3e8 - tx.fee);
 
-            var t = tx.getBtccoreTx();
+            var t = tx.getBtcTx();
             t.getFee().should.equal(tx.fee);
             should.not.exist(t.getChangeOutput());
             t.toObject().inputs.length.should.equal(tx.inputs.length);
@@ -3361,7 +3361,7 @@ describe('Wallet service', function() {
           server.createTx(txOpts, function(err, txp) {
             should.not.exist(err);
             should.exist(txp);
-            var t = txp.getBtccoreTx();
+            var t = txp.getBtcTx();
             var changeOutput = t.getChangeOutput().satoshis;
             var outputs = _.without(_.pluck(t.outputs, 'satoshis'), changeOutput);
 
@@ -3371,7 +3371,7 @@ describe('Wallet service', function() {
               should.not.exist(err);
               should.exist(txp);
 
-              t = txp.getBtccoreTx();
+              t = txp.getBtcTx();
               changeOutput = t.getChangeOutput().satoshis;
               outputs = _.without(_.pluck(t.outputs, 'satoshis'), changeOutput);
 
@@ -3895,7 +3895,7 @@ describe('Wallet service', function() {
             should.not.exist(err);
             txp.inputs.length.should.equal(1);
             (_.sum(txp.inputs, 'satoshis') - txp.outputs[0].amount - txp.fee).should.equal(0);
-            var changeOutput = txp.getBtccoreTx().getChangeOutput();
+            var changeOutput = txp.getBtcTx().getChangeOutput();
             should.not.exist(changeOutput);
             done();
           });
@@ -4437,7 +4437,7 @@ describe('Wallet service', function() {
       server.createTx(txOpts, function(err, tx) {
         should.not.exist(err);
         should.exist(tx);
-        var t = tx.getBtccoreTx();
+        var t = tx.getBtcTx();
         t.toObject().inputs.length.should.equal(info.inputs.length);
         t.getFee().should.equal(info.fee);
         should.not.exist(t.getChangeOutput());
