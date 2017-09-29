@@ -2,7 +2,7 @@
 
 var should = require('chai').should();
 var proxyquire = require('proxyquire');
-var btc = require('btc-lib');
+var btcLib = require('btc-lib');
 var sinon = require('sinon');
 var Service = require('../btc-node');
 var Constants = require('../lib/common/constants');
@@ -110,7 +110,7 @@ describe('Btc Node Service', function() {
     it('livenet local explorer', function() {
       var options = {
         node: {
-          network: btc.Networks.livenet,
+          network: btcLib.Networks.livenet,
           port: 3001
         }
       };
@@ -124,7 +124,7 @@ describe('Btc Node Service', function() {
     it('testnet local explorer', function() {
       var options = {
         node: {
-          network: btc.Networks.testnet,
+          network: btcLib.Networks.testnet,
           port: 3001
         }
       };
