@@ -1,5 +1,5 @@
 {
-  "name": "btccore-wallet-service",
+  "name": "btc-wallet-service",
   "description": "A service for mutisignatire HD Bitcoin wallets",
   "version": "0.0.1",
   "licence": "MIT",
@@ -8,15 +8,15 @@
     "copay",
     "multisig",
     "wallet",
-    "btccore",
+    "btc",
     "BTCWS"
   ],
   "repository": {
-    "url": "git@github.com:owstack/btccore-wallet-service.git",
+    "url": "git@github.com:owstack/btc-wallet-service.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/owstack/btccore-wallet-service/issues"
+    "url": "https://github.com/owstack/btc-wallet-service/issues"
   },
   "scripts": {
     "start": "./start.sh",
@@ -25,10 +25,10 @@
     "test": "./node_modules/.bin/mocha",
     "coveralls": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
-  "btccoreNode": "btccore-node",
+  "btcNode": "btc-node",
   "dependencies": {
     "async": "^0.9.2",
-    "btccore-lib": "https://github.com/owstack/btccore-lib",
+    "btc-lib": "https://github.com/owstack/btc-lib",
     "body-parser": "^1.11.0",
     "compression": "^1.6.2",
     "coveralls": "^2.11.2",

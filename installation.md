@@ -7,8 +7,8 @@ See the configuration section to configure a different host/port.
 ### Install BTCWS from NPM
 Use the following steps to Install BTCWS from the npmjs repository and run it with defaults.
 ```bash
-npm install btccore-wallet-service
-cd btccore-wallet-service
+npm install btc-wallet-service
+cd btc-wallet-service
 ```
 To change configuration before running, see the Configuration section.
 ```bash
@@ -18,8 +18,8 @@ npm start
 ### Install BTCWS from github source
 Use the following steps to Install BTCWS from github source and run it with defaults.
 ```bash
-git clone https://github.com/owstack/btccore-wallet-service.git
-cd btccore-wallet-service
+git clone https://github.com/owstack/btc-wallet-service.git
+cd btc-wallet-service
 npm install
 ```
 To change configuration before running, see the Configuration section.
@@ -27,14 +27,14 @@ To change configuration before running, see the Configuration section.
 npm start
 ```
 ### Configuration
-Configuration for all required modules can be specified in https://github.com/owstack/btccore-wallet-service/blob/master/config.js
+Configuration for all required modules can be specified in https://github.com/owstack/btc-wallet-service/blob/master/config.js
 
 BTCWS is composed of 5 separate node services -
 Locker - locker/locker.js
 Message Broker - messagebroker/messagebroker.js
 Blockchain Monitor - bcmonitor/bcmonitor.js (This service talks to the Blockchain Explorer service configured under blockchainExplorerOpts - see Configure blockchain service below.)
 Email Service - emailservice/emailservice.js
-Btccore Wallet Service - btcws.js
+Btc Wallet Service - btcws.js
 
 #### Configure MongoDB
 Example configuration for connecting to the MongoDB instance:

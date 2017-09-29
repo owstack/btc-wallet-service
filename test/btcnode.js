@@ -2,12 +2,12 @@
 
 var should = require('chai').should();
 var proxyquire = require('proxyquire');
-var btccore = require('btccore-lib');
+var btc = require('btc-lib');
 var sinon = require('sinon');
-var Service = require('../btccore-node');
+var Service = require('../btc-node');
 var Constants = require('../lib/common/constants');
 
-describe('Btccore Node Service', function() {
+describe('Btc Node Service', function() {
   describe('#constructor', function() {
     it('https settings from node', function() {
       var node = {
@@ -66,7 +66,7 @@ describe('Btccore Node Service', function() {
     });
   });
   describe('#readHttpsOptions', function() {
-    var TestService = proxyquire('../btccore-node', {
+    var TestService = proxyquire('../btc-node', {
       fs: {
         readFileSync: function(arg) {
           return arg;
@@ -110,7 +110,7 @@ describe('Btccore Node Service', function() {
     it('livenet local explorer', function() {
       var options = {
         node: {
-          network: btccore.Networks.livenet,
+          network: btc.Networks.livenet,
           port: 3001
         }
       };
@@ -124,7 +124,7 @@ describe('Btccore Node Service', function() {
     it('testnet local explorer', function() {
       var options = {
         node: {
-          network: btccore.Networks.testnet,
+          network: btc.Networks.testnet,
           port: 3001
         }
       };
@@ -143,7 +143,7 @@ describe('Btccore Node Service', function() {
       function TestWSApp() {}
       TestWSApp.prototype.start = sinon.stub().callsArg(2);
       var listen = sinon.stub().callsArg(1);
-      var TestService = proxyquire('../btccore-node', {
+      var TestService = proxyquire('../btc-node', {
         '../lib/expressapp': TestExpressApp,
         '../lib/wsapp': TestWSApp,
         'http': {
@@ -173,7 +173,7 @@ describe('Btccore Node Service', function() {
       function TestWSApp() {}
       TestWSApp.prototype.start = sinon.stub().callsArg(2);
       var listen = sinon.stub().callsArgWith(1, new Error('test'));
-      var TestService = proxyquire('../btccore-node', {
+      var TestService = proxyquire('../btc-node', {
         '../lib/expressapp': TestExpressApp,
         '../lib/wsapp': TestWSApp,
         'http': {
@@ -214,7 +214,7 @@ describe('Btccore Node Service', function() {
           listen: listen
         };
       };
-      var TestService = proxyquire('../btccore-node', {
+      var TestService = proxyquire('../btc-node', {
         '../lib/expressapp': TestExpressApp,
         '../lib/wsapp': TestWSApp,
         'https': {
@@ -259,7 +259,7 @@ describe('Btccore Node Service', function() {
       TestLocker.prototype.listen = sinon.stub();
       function TestEmailService() {}
       TestEmailService.prototype.start = sinon.stub();
-      var TestService = proxyquire('../btccore-node', {
+      var TestService = proxyquire('../btc-node', {
         '../lib/blockchainmonitor': TestBlockchainMonitor,
         '../lib/emailservice': TestEmailService,
         'socket.io': sinon.stub().returns({
@@ -287,7 +287,7 @@ describe('Btccore Node Service', function() {
       TestLocker.prototype.listen = sinon.stub();
       function TestEmailService() {}
       TestEmailService.prototype.start = sinon.stub().callsArgWith(1, new Error('test'));
-      var TestService = proxyquire('../btccore-node', {
+      var TestService = proxyquire('../btc-node', {
         '../lib/blockchainmonitor': TestBlockchainMonitor,
         '../lib/emailservice': TestEmailService,
         'socket.io': sinon.stub().returns({

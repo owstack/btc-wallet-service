@@ -72,7 +72,7 @@ var config = {
   //  port: 25,
   //  ignoreTLS: true,
   //  subjectPrefix: '[Wallet Service]',
-  //  from: 'wallet-service@btccore.io',
+  //  from: 'wallet-service@btc.io',
   //  templatePath: './lib/templates',
   //  defaultLanguage: 'en',
   //  defaultUnit: 'btc',
