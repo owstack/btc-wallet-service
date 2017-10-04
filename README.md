@@ -1,6 +1,8 @@
 Btc Wallet Service
 ======
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/owstack/btc-wallet-service.svg)](https://greenkeeper.io/)
+
 [![NPM Package](https://img.shields.io/npm/v/btc-wallet-service.svg?style=flat-square)](https://www.npmjs.org/package/btc-wallet-service)
 [![Build Status](https://img.shields.io/travis/owstack/btc-wallet-service.svg?branch=master&style=flat-square)](https://travis-ci.org/owstack/btc-wallet-service)
 [![Coverage Status](https://coveralls.io/repos/owstack/btc-wallet-service/badge.svg?branch=master)](https://coveralls.io/r/owstack/btc-wallet-service?branch=master)
