@@ -51,23 +51,11 @@ describe('Wallet service', function() {
   describe('#getInstance', function() {
     it('should get server instance', function() {
       var server = WalletService.getInstance({
-        clientVersion: 'bwc-2.9.0',
+        clientVersion: 'btcwc-2.9.0',
       });
-      server.clientVersion.should.equal('bwc-2.9.0');
+      server.clientVersion.should.equal('btcwc-2.9.0');
     });
-    it('should not get server instance for BWC lower than v1.2', function() {
-      var err;
-      try {
-        var server = WalletService.getInstance({
-          clientVersion: 'bwc-1.1.99',
-        });
-      } catch (ex) {
-        err = ex;
-      }
-      should.exist(err);
-      err.code.should.equal('UPGRADE_NEEDED');
-    });
-    it('should get server instance for non-BWC clients', function() {
+    it('should get server instance for non-BTCWC clients', function() {
       var server = WalletService.getInstance({
         clientVersion: 'dummy-1.0.0',
       });
@@ -78,19 +66,6 @@ describe('Wallet service', function() {
   });
 
   describe('#getInstanceWithAuth', function() {
-    it('should not get server instance for BWC lower than v1.2', function(done) {
-      var server = WalletService.getInstanceWithAuth({
-        copayerId: '1234',
-        message: 'hello world',
-        signature: 'xxx',
-        clientVersion: 'bwc-1.1.99',
-      }, function(err, server) {
-        should.exist(err);
-        should.not.exist(server);
-        err.code.should.equal('UPGRADE_NEEDED');
-        done();
-      });
-    });
     it('should get server instance for existing copayer', function(done) {
       helpers.createAndJoinWallet(1, 2, function(s, wallet) {
         var xpriv = TestData.copayers[0].xPrivKey;
@@ -102,13 +77,13 @@ describe('Wallet service', function() {
           copayerId: wallet.copayers[0].id,
           message: 'hello world',
           signature: sig,
-          clientVersion: 'bwc-2.0.0',
+          clientVersion: 'btcwc-2.0.0',
           walletId: '123',
         }, function(err, server) {
           should.not.exist(err);
           server.walletId.should.equal(wallet.id);
           server.copayerId.should.equal(wallet.copayers[0].id);
-          server.clientVersion.should.equal('bwc-2.0.0');
+          server.clientVersion.should.equal('btcwc-2.0.0');
           done();
         });
       });
