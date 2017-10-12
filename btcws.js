@@ -9,9 +9,6 @@ var log = require('npmlog');
 log.debug = log.verbose;
 log.disableColor();
 
-
-
-
 var port = process.env.BTCWS_PORT || config.port || 3232;
 
 var cluster = require('cluster');
