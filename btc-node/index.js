@@ -72,6 +72,14 @@ Service.prototype._readHttpsOptions = function() {
 };
 
 /**
+ * Will get the configuration settings.
+ * @returns {Object}
+ */
+Service.prototype._getConfiguration = function() {
+  return baseConfig;
+};
+
+/**
  * Will start the HTTP web server and socket.io for the wallet service.
  */
 Service.prototype._startWalletService = function(config, next) {
@@ -98,7 +106,7 @@ Service.prototype._startWalletService = function(config, next) {
  */
 Service.prototype.start = function(done) {
   var self = this;
-  var config = baseConfig;
+  var config = this._getConfiguration();
 
   // Locker Server
   var locker = new Locker();
