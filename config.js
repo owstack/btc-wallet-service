@@ -43,12 +43,16 @@ var config = {
     // Providers
     explorer: {
       livenet: {
-        url: 'http://localhost:3001',
-        apiPrefix: '/explorer-api'
+        url: 'https://insight.bitpay.com',
+        apiPrefix: '/api'
+//        url: 'http://localhost:3001',
+//        apiPrefix: '/explorer-api'
       },
       testnet: {
-        url: 'http://localhost:3001',
-        apiPrefix: '/explorer-api'
+        url: 'https://test-insight.bitpay.com',
+        apiPrefix: '/api'
+//        url: 'http://localhost:3001',
+//        apiPrefix: '/explorer-api'
         // Multiple servers (in priority order)
         // url: ['http://a.b.c', 'https://test-explorer.openwalletstack.com:443'],
       },

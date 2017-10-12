@@ -72,34 +72,6 @@ Service.prototype._readHttpsOptions = function() {
 };
 
 /**
- * Will get the configuration with settings for the locally
- * running Explorer API.
- * @returns {Object}
- */
-Service.prototype._getConfiguration = function() {
-  var self = this;
-
-  var providerOptions = {
-    url: (self.node.https ? 'https://' : 'http://') + 'localhost:' + self.node.port,
-    apiPrefix: '/explorer-api'
-  };
-
-  // A btc-node is either livenet or testnet, so we'll pass
-  // the configuration options to communicate via the local running
-  // instance of the explorer-api service.
-  if (self.node.network === Networks.livenet) {
-    baseConfig.blockchainExplorerOpts[Constants.LIVENET] = providerOptions;
-  } else if (self.node.network === Networks.testnet) {
-    baseConfig.blockchainExplorerOpts[Constants.TESTNET] = providerOptions;
-  } else {
-    throw new Error('Unknown network');
-  }
-
-  return baseConfig;
-
-};
-
-/**
  * Will start the HTTP web server and socket.io for the wallet service.
  */
 Service.prototype._startWalletService = function(config, next) {
@@ -125,14 +97,8 @@ Service.prototype._startWalletService = function(config, next) {
  * Called by the node to start the service
  */
 Service.prototype.start = function(done) {
-
   var self = this;
-  var config;
-  try {
-    config = self._getConfiguration();
-  } catch (err) {
-    return done(err);
-  }
+  var config = baseConfig;
 
   // Locker Server
   var locker = new Locker();
@@ -150,8 +116,8 @@ Service.prototype.start = function(done) {
 
     function(next) {
       // Blockchain Monitor
-      var blockChainMonitor = new BlockchainMonitor();
-      blockChainMonitor.start(config, next);
+      var blockchainMonitor = new BlockchainMonitor();
+      blockchainMonitor.start(config, next);
     },
     function(next) {
       // Email Service
