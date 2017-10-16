@@ -9,9 +9,13 @@ log.debug = log.verbose;
 var config = require('../config');
 var EmailService = require('../lib/emailservice');
 
-var emailService = new EmailService();
-emailService.start(config, function(err) {
-  if (err) throw err;
+if (config.emailOpts) {
+	var emailService = new EmailService();
+	emailService.start(config, function(err) {
+	  if (err) throw err;
 
-  console.log('Email service started');
-});
+	  console.log('Email service started');
+	});
+} else {
+  console.log('Email service not configured');	
+}
