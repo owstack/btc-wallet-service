@@ -1550,7 +1550,7 @@ describe('Wallet service', function() {
     });
     it('should get UTXOs for specific addresses', function(done) {
       helpers.stubUtxos(server, wallet, [1, 2, 3], function(utxos) {
-        _.uniq(utxos, 'address').length.should.be.above(1);
+        _.uniqBy(utxos, 'address').length.should.be.above(1);
         var address = utxos[0].address;
         var amount = _.sumBy(_.filter(utxos, {
           address: address
