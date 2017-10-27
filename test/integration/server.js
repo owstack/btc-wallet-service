@@ -10,7 +10,7 @@ var log = require('npmlog');
 log.debug = log.verbose;
 log.level = 'info';
 
-var btcLib = require('btc-lib');
+var btcLib = require('@owstack/btc-lib');
 
 var Common = require('../../lib/common');
 var Utils = Common.Utils;

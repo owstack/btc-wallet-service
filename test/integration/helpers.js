@@ -12,7 +12,7 @@ var tingodb = require('tingodb')({
   memStore: true
 });
 
-var btcLib = require('btc-lib');
+var btcLib = require('@owstack/btc-lib');
 
 var Common = require('../../lib/common');
 var Utils = Common.Utils;

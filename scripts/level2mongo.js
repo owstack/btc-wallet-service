@@ -2,7 +2,7 @@
 
 var LevelStorage = require('../lib/storage_leveldb');
 var MongoStorage = require('../lib/storage');
-var btcLib = require('btc-lib');
+var btcLib = require('@owstack/btc-lib');
 
 var level = new LevelStorage({
   dbPath: './db',

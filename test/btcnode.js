@@ -2,7 +2,7 @@
 
 var should = require('chai').should();
 var proxyquire = require('proxyquire');
-var btcLib = require('btc-lib');
+var btcLib = require('@owstack/btc-lib');
 var sinon = require('sinon');
 var Service = require('../btc-node');
 var Constants = require('../lib/common/constants');
