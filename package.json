@@ -1,7 +1,7 @@
 {
   "name": "@owstack/btc-wallet-service",
   "description": "A service for mutisignatire HD Bitcoin wallets",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "licence": "MIT",
   "keywords": [
     "bitcoin",
@@ -28,7 +28,7 @@
   "btcNode": "btc-node",
   "dependencies": {
     "async": "^0.9.2",
-    "@owstack/btc-lib": "^0.0.1",
+    "@owstack/btc-lib": "^0.0.2",
     "body-parser": "^1.11.0",
     "compression": "^1.6.2",
     "coveralls": "^2.11.2",
