@@ -30,14 +30,14 @@ var Constants = require('../lib/common/constants');
  */
 var Service = function(options) {
   EventEmitter.call(this);
-
+  this.config = options.config || baseConfig;
   this.node = options.node;
   this.https = options.https || this.node.https;
   this.httpsOptions = options.httpsOptions || this.node.httpsOptions;
-  this.btcwsPort = options.btcwsPort || baseConfig.port;
+  this.btcwsPort = options.btcwsPort || this.config.port;
   this.messageBrokerPort = options.messageBrokerPort || 3380;
-  if (baseConfig.lockOpts) {
-    this.lockerPort = baseConfig.lockOpts.lockerServer.port;
+  if (this.config.lockOpts) {
+    this.lockerPort = this.config.lockOpts.lockerServer.port;
   }
   this.lockerPort = options.lockerPort || this.lockerPort;
 };
@@ -76,7 +76,7 @@ Service.prototype._readHttpsOptions = function() {
  * @returns {Object}
  */
 Service.prototype._getConfiguration = function() {
-  return baseConfig;
+  return this.config;
 };
 
 /**
