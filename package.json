@@ -1,7 +1,7 @@
 {
   "name": "@owstack/btc-wallet-service",
   "description": "A service for mutisignatire HD Bitcoin wallets",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "licence": "MIT",
   "keywords": [
     "bitcoin",
