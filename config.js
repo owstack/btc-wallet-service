@@ -39,22 +39,16 @@ var config = {
   },
   blockchainExplorerOpts: {
     defaultProvider: 'explorer',
-
-    // Providers
     explorer: {
+      // Multiple servers (in priority order)
+      // url: ['http://a.b.c', 'https://test-explorer.openwalletstack.com:443'],
       livenet: {
-        url: 'https://insight.bitpay.com',
-        apiPrefix: '/api'
-//        url: 'http://localhost:3001',
-//        apiPrefix: '/explorer-api'
+        url: 'http://btc.owstack.org:3001',
+        apiPrefix: '/explorer-api'
       },
       testnet: {
         url: 'https://test-insight.bitpay.com',
         apiPrefix: '/api'
-//        url: 'http://localhost:3001',
-//        apiPrefix: '/explorer-api'
-        // Multiple servers (in priority order)
-        // url: ['http://a.b.c', 'https://test-explorer.openwalletstack.com:443'],
       },
     },
   },
